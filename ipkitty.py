@@ -4,7 +4,6 @@ from time import sleep
 import sys
 import threading
 
-# ANSI escape codes for colors
 class colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -15,7 +14,7 @@ class colors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-    PINK = '\033[95m'  # Pink color
+    PINK = '\033[95m'
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -39,8 +38,8 @@ def start_tor_service():
     try:
         os.system("sudo service tor start > /dev/null 2>&1")
         print(colors.OKGREEN + "\nTor service started successfully." + colors.ENDC)
-        clear_terminal()  # Clear terminal
-        Main()  # Restart the main function after starting Tor service
+        clear_terminal()
+        Main()
     except Exception as e:
         print(colors.FAIL + "\nFailed to start Tor service:", e + colors.ENDC)
         sys.exit(1)
@@ -55,8 +54,7 @@ def spinner_effect():
         i = (i + 1) % 4
 
 def Main():
-    clear_terminal()  # Clear terminal
-    # Display ASCII art in pink color
+    clear_terminal()
     print(colors.PINK + """░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░  ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░  ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
@@ -69,11 +67,10 @@ def Main():
 Follow on instagram: @pwnkitty""" + colors.ENDC)
 
     change = int(input(colors.WARNING + "\nEnter the interval (in seconds) for changing your IP: " + colors.ENDC))
-    check_tor_service() # Checking Tor service status before starting
+    check_tor_service()
     url = "https://httpbin.org/ip"
     proxy = {'http':'socks5://127.0.0.1:9050', 'https':'socks5://127.0.0.1:9050'}
 
-    # Start spinner effect in a separate thread
     spinner_thread = threading.Thread(target=spinner_effect)
     spinner_thread.start()
 
@@ -81,13 +78,13 @@ Follow on instagram: @pwnkitty""" + colors.ENDC)
         try:
             response = requests.get(url, proxies=proxy)
             if response.status_code == 200:
-                sys.stdout.write("\r\033[K")  # Clear line
+                sys.stdout.write("\r\033[K")
                 print(colors.OKGREEN + "Your Current IP :: {}".format(response.json().get("origin")) + colors.ENDC)
             else:
-                sys.stdout.write("\r\033[K")  # Clear line
+                sys.stdout.write("\r\033[K")
                 print(colors.FAIL + "Failed To Fetch Current IP" + colors.ENDC)
         except Exception as e:
-            sys.stdout.write("\r\033[K")  # Clear line
+            sys.stdout.write("\r\033[K")
             print(colors.FAIL + "An error occurred:", e + colors.ENDC)
         sleep(change)
 
