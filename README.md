@@ -13,12 +13,12 @@ This Python script provides an automated solution for changing your IP address w
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your_username/auto-ip-changer.git
+   git clone https://github.com/pwnkitty/ipkitty
    ```
 
 2. **Navigate to the Directory:**
    ```bash
-   cd auto-ip-changer
+   cd ipkitty
    ```
 
 3. **Install Dependencies:**
@@ -36,7 +36,7 @@ This Python script provides an automated solution for changing your IP address w
 
 4. **Run the Script:**
    ```bash
-   python3 auto_ip_changer.py
+   python3 ipkitty.py
    ```
    Follow the on-screen prompts to set the interval for IP changes.
 
@@ -44,35 +44,29 @@ This Python script provides an automated solution for changing your IP address w
 
 - **Linux:**
   ```bash
-  python3 auto_ip_changer.py
+  python3 ipkitty.py
   ```
 
 - **Termux (Android):**
   ```bash
   pkg install git python
-  git clone https://github.com/your_username/auto-ip-changer.git
-  cd auto-ip-changer
-  python3 auto_ip_changer.py
+  git clone https://github.com/pwnkitty/ipkitty
+  cd ipkitty
+  python3 ipkitty.py
   ```
 
 - **Debian/Ubuntu:**
   ```bash
   sudo apt-get install git python3
-  git clone https://github.com/your_username/auto-ip-changer.git
-  cd auto-ip-changer
-  python3 auto_ip_changer.py
+  git clone https://github.com/pwnkitty/ipkitty
+  cd ipkitty
+  python3 ipkitty.py
   ```
 
 - **Arch Linux:**
   ```bash
   sudo pacman -S git python
-  git clone https://github.com/your_username/auto-ip-changer.git
-  cd auto-ip-changer
-  python3 auto_ip_changer.py
+  git clone https://github.com/pwnkitty/ipkitty
+  cd ipkitty
+  python3 ipkitty.py
   ```
-
-## Note
-- Ensure you have Tor installed and running on your system for the script to work properly.
-```
-
-Replace `your_username` with your actual GitHub username in the repository URL. This README provides clear instructions and commands for running the script on various platforms.
