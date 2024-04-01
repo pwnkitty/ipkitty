@@ -1,7 +1,6 @@
 # ipkitty
 Auto IP Changer with Tor Service
 
-```markdown
 # Auto IP Changer with Tor Service Checker
 
 This Python script provides an automated solution for changing your IP address while ensuring the Tor service is running. It utilizes the Tor network via SOCKS5 proxy for IP changes and includes a built-in checker to verify the Tor service status.
