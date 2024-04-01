@@ -1,9 +1,6 @@
 # ipkitty
 Auto IP Changer with Tor Service
 
-
-Certainly! Below is a template for the `README.md` file with instructions and commands for using the script in Linux, Termux, Debian, and Arch:
-
 ```markdown
 # Auto IP Changer with Tor Service Checker
 
