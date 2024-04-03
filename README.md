@@ -1,78 +1,71 @@
+# ipkitty
+Auto IP Changer with Tor Service
 
-IPKitty
-IPKitty is a Python script that automates IP address changes using the Tor network via SOCKS5 proxy. It also includes a built-in checker to verify the status of the Tor service.
+# Auto IP Changer with Tor Service Checker
 
-Features
-Automatic IP address changing using Tor network.
-Built-in checker to verify Tor service status.
-Easy-to-use Python script.
-Requirements
-Python 3
-Tor service
-Installation
-Clone the repository:
+This Python script provides an automated solution for changing your IP address while ensuring the Tor service is running. It utilizes the Tor network via SOCKS5 proxy for IP changes and includes a built-in checker to verify the Tor service status.
 
-bash
-Copy code
-git clone https://github.com/pwnkitty/ipkitty
-Navigate to the directory:
 
-bash
-Copy code
-cd ipkitty
-Install dependencies:
 
-Make sure you have Python 3 installed. If not, install it using your package manager:
 
-bash
-Copy code
-# For Debian/Ubuntu
-sudo apt-get install python3
+## Instructions
 
-# For Arch Linux
-sudo pacman -S python
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/pwnkitty/ipkitty
+   ```
 
-# For Termux (Android)
-pkg install python
-Usage
-Run the script:
+2. **Navigate to the Directory:**
+   ```bash
+   cd ipkitty
+   ```
 
-bash
-Copy code
-python3 ipkitty.py
-Follow the on-screen prompts to set the interval for IP changes.
+3. **Install Dependencies:**
+   Ensure you have Python installed. If not, install it using your package manager:
+   ```bash
+   # For Debian/Ubuntu
+   sudo apt-get install python3
+   
+   # For Arch Linux
+   sudo pacman -S python
+   
+   # For Termux (Android)
+   pkg install python
+   ```
 
-Usage Examples
-Linux:
+4. **Run the Script:**
+   ```bash
+   python3 ipkitty.py
+   ```
+   Follow the on-screen prompts to set the interval for IP changes.
 
-bash
-Copy code
-python3 ipkitty.py
-Termux (Android):
+## Usage
 
-bash
-Copy code
-pkg install git python
-git clone https://github.com/pwnkitty/ipkitty
-cd ipkitty
-python3 ipkitty.py
-Debian/Ubuntu:
+- **Linux:**
+  ```bash
+  python3 ipkitty.py
+  ```
 
-bash
-Copy code
-sudo apt-get install git python3
-git clone https://github.com/pwnkitty/ipkitty
-cd ipkitty
-python3 ipkitty.py
-Arch Linux:
+- **Termux (Android):**
+  ```bash
+  pkg install git python
+  git clone https://github.com/pwnkitty/ipkitty
+  cd ipkitty
+  python3 ipkitty.py
+  ```
 
-bash
-Copy code
-sudo pacman -S git python
-git clone https://github.com/pwnkitty/ipkitty
-cd ipkitty
-python3 ipkitty.py
-Credits
-@pwnkitty - Original creator
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+- **Debian/Ubuntu:**
+  ```bash
+  sudo apt-get install git python3
+  git clone https://github.com/pwnkitty/ipkitty
+  cd ipkitty
+  python3 ipkitty.py
+  ```
+
+- **Arch Linux:**
+  ```bash
+  sudo pacman -S git python
+  git clone https://github.com/pwnkitty/ipkitty
+  cd ipkitty
+  python3 ipkitty.py
+  ```
