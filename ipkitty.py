@@ -15,6 +15,7 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     PINK = '\033[95m'
+    HACKER_GREEN = '\033[92m'  
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -32,12 +33,15 @@ def check_tor_service():
         print(colors.FAIL + "\nFailed to check Tor service status:", e + colors.ENDC)
         sys.exit(1)
 
-
 def start_tor_service():
-    print(colors.OKBLUE + "\nStarting Tor Service" + colors.ENDC)
     try:
+        sys.stdout.write("\r" + colors.BOLD + colors.OKBLUE + "Starting Tor Service" + colors.ENDC)
+        for i in range(1, 101):
+            sys.stdout.write("\r" + colors.BOLD + colors.HACKER_GREEN + f"Starting Tor Service: [{'#' * (i // 5)}{' ' * ((100 - i) // 5)}] {i}%" + colors.ENDC)
+            sys.stdout.flush()
+            sleep(0.1)
         os.system("sudo service tor start > /dev/null 2>&1")
-        print(colors.OKGREEN + "\nTor service started successfully." + colors.ENDC)
+        print("\n" + colors.OKGREEN + "Tor service started successfully." + colors.ENDC)
         clear_terminal()
         Main()
     except Exception as e:
@@ -48,14 +52,15 @@ def spinner_effect():
     spinner = ['|', '/', '-', '\\']
     i = 0
     while True:
-        sys.stdout.write("\r" + colors.BOLD + "Fetching IP... " + colors.OKCYAN + spinner[i] + colors.ENDC)
+        sys.stdout.write("\r" + colors.BOLD + "Changing IP... " + colors.OKCYAN + spinner[i] + colors.ENDC)
         sys.stdout.flush()
         sleep(0.1)
         i = (i + 1) % 4
 
 def Main():
     clear_terminal()
-    print(colors.PINK + """░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+    print(colors.PINK + """
+░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░  ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░  ░▒▓█▓▒░      ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░ 
 ░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░  ░▒▓█▓▒░      ░▒▓█▓▒░    ░▒▓██████▓▒░  
@@ -64,10 +69,11 @@ def Main():
 ░▒▓█▓▒░       ░▒▓█████████████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░  ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░     
                                                                                                           
                                                                                                           
-Follow on instagram: @pwnkitty""" + colors.ENDC)
+Follow on instagram: @pwnkitty <3""" + colors.ENDC)
 
+    check_tor_service()  
     change = int(input(colors.WARNING + "\nEnter the interval (in seconds) for changing your IP: " + colors.ENDC))
-    check_tor_service()
+
     url = "https://httpbin.org/ip"
     proxy = {'http':'socks5://127.0.0.1:9050', 'https':'socks5://127.0.0.1:9050'}
 
@@ -76,16 +82,13 @@ Follow on instagram: @pwnkitty""" + colors.ENDC)
 
     while True:
         try:
-            response = requests.get(url, proxies=proxy)
+            response = requests.get(url, proxies=proxy, timeout=10)  
             if response.status_code == 200:
                 sys.stdout.write("\r\033[K")
-                print(colors.OKGREEN + "Your Current IP :: {}".format(response.json().get("origin")) + colors.ENDC)
-            else:
-                sys.stdout.write("\r\033[K")
-                print(colors.FAIL + "Failed To Fetch Current IP" + colors.ENDC)
+                print(colors.OKGREEN + "Your Current IP Is:: {}".format(response.json().get("origin")) + colors.ENDC)
         except Exception as e:
             sys.stdout.write("\r\033[K")
-            print(colors.FAIL + "An error occurred:", e + colors.ENDC)
+            print(colors.FAIL + "An error occurred while fetching IP:", e + colors.ENDC)
         sleep(change)
 
 if __name__ == "__main__":
